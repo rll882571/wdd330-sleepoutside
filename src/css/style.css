@@ -241,6 +241,46 @@ button {
   grid-column: 3;
 }
 
+.cart-card__empty.is-not-empty {
+  display: none;
+}
+
+.cart-card__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.cart-card__empty p,
+a {
+  font-size: var(--small-font);
+  color: var(--dark-grey);
+}
+
+.cart-card__empty a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out;
+  transition-duration: 300ms;
+}
+
+.cart-card__empty a img {
+  width: 20px;
+  height: 20px;
+}
+
+.cart-card__empty a:hover {
+  text-decoration: underline;
+  color: var(--tertiary-color);
+}
+
+.cart-card__empty a:hover img {
+  transform: translateX(10%);
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
