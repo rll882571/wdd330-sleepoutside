@@ -1,3 +1,4 @@
-import { updateCartCount } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
-updateCartCount();
+// Carrega o cabeçalho e o rodapé dinamicamente na página inicial
+loadHeaderFooter();
