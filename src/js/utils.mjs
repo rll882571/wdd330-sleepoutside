@@ -41,3 +41,33 @@ export function renderListWithTemplate(
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+// 1. Renderiza um único template direto no elemento pai [cite: 89, 90, 91]
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template; // [cite: 89]
+  if (callback) { // [cite: 90]
+    callback(data); // [cite: 91]
+  }
+}
+
+// 2. Faz o fetch assíncrono do arquivo HTML parcial e o transforma em texto string [cite: 107, 108, 109, 110]
+export async function loadTemplate(path) {
+  const res = await fetch(path); // [cite: 108]
+  const template = await res.text(); // [cite: 109]
+  return template; // [cite: 110]
+}
+
+// 3. Orquestra o carregamento dos parciais e injeta nos elementos correspondentes [cite: 112, 114, 115, 116]
+export async function loadHeaderFooter() {
+  // Carrega os templates de dentro da sua pasta partials [cite: 114]
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
+  
+  // Seleciona as cascas vazias que preparamos no seu HTML [cite: 115]
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  // Renderiza ambos na tela [cite: 116]
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+}
