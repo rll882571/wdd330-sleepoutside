@@ -1,4 +1,4 @@
 import { loadHeaderFooter } from "./utils.mjs";
 
-// Carrega os componentes modulares e o contador do carrinho
+// Carrega o cabeçalho e o rodapé dinamicamente na página inicial
 loadHeaderFooter();
