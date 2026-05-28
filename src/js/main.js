@@ -1,6 +1,6 @@
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
+import { updateCartCount } from "./utils.mjs";
 
+<<<<<<< HEAD
 import { loadHeaderFooter, getParam } from "./utils.mjs";
 loadHeaderFooter();
 
@@ -18,3 +18,6 @@ const productList = new ProductList(category, dataSource, element);
 
 productList.init();
 
+=======
+updateCartCount();
+>>>>>>> rl--individual3

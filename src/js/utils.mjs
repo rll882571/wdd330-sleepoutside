@@ -41,6 +41,7 @@ export function renderListWithTemplate(
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+<<<<<<< HEAD
 
 // 1. Renderiza um único template direto no elemento pai [cite: 89, 90, 91]
 export function renderWithTemplate(template, parentElement, data, callback) {
@@ -71,3 +72,13 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
+=======
+ export function updateCartCount() {
+  const cart = getLocalStorage("so-cart");
+  const count = cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+  const cartCountElement = qs("#cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = count;
+  }
+ }
+>>>>>>> rl--individual3
