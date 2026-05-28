@@ -2,17 +2,17 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -41,11 +41,47 @@ export function renderListWithTemplate(
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
- export function updateCartCount() {
+
+export function updateCartCount() {
   const cart = getLocalStorage("so-cart");
   const count = cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
   const cartCountElement = qs("#cart-count");
   if (cartCountElement) {
     cartCountElement.textContent = count;
   }
- }
+}
+
+// ==========================================
+// 1. Injeta o HTML gerado direto no elemento pai
+// ==========================================
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  }
+}
+
+// ==========================================
+// 2. Faz o fetch do arquivo HTML e o transforma em texto
+// ==========================================
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+}
+
+// ==========================================
+// 3. Orquestra o carregamento dos parciais e injeta nas tags
+// ==========================================
+export async function loadHeaderFooter() {
+  // Como a pasta public é mapeada como raiz pelo Vite, acessamos direto com /partials/
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
+  
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  // Renderiza e chama o updateCartCount para atualizar o número de itens no carrinho
+  renderWithTemplate(headerTemplate, headerElement, null, updateCartCount);
+  renderWithTemplate(footerTemplate, footerElement);
+}
