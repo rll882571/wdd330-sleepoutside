@@ -1,0 +1,36 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "ASGU-branch",
+    "driverinitial--team4",
+    "main",
+    "origin",
+    "rf--team3",
+    "rl--branch-test",
+    "rl--individual2",
+    "rl--individual3",
+    "rl--individual4"
+  ],
+  "parent": {
+    "ASGU-branch": "main",
+    "driverinitial--team4": "main",
+    "main": null,
+    "origin": "main",
+    "rf--team3": "main",
+    "rl--branch-test": "main",
+    "rl--individual2": "main",
+    "rl--individual3": "main",
+    "rl--individual4": "main"
+  },
+  "order": [
+    "main",
+    "ASGU-branch",
+    "driverinitial--team4",
+    "origin",
+    "rf--team3",
+    "rl--branch-test",
+    "rl--individual2",
+    "rl--individual3",
+    "rl--individual4"
+  ]
+}
