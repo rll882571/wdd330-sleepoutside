@@ -43,8 +43,10 @@ export function renderListWithTemplate(
 }
 
 export function updateCartCount() {
-  const cart = getLocalStorage("so-cart");
-  const count = cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+  const cart = getLocalStorage("so-cart") || [];
+ 
+  const count = cart.length; 
+  
   const cartCountElement = qs("#cart-count");
   if (cartCountElement) {
     cartCountElement.textContent = count;
