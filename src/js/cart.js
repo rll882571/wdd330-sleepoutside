@@ -10,6 +10,12 @@ function renderCartContents() {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".cart-card__empty").classList.add("is-not-empty");
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
+    let total = 0;
+    cartItems.forEach((item) => {
+      total += item.FinalPrice;
+    });
+    document.querySelector(".cart-total-value").textContent = total.toFixed(2);
+    
   } else {
     document
       .querySelector(".cart-card__empty")

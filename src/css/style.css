@@ -130,7 +130,9 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
+.checkout-btn:hover {
+  background-color: var(--tertiary-color);
+}
 /* End cart icon styles */
 
 .mission {
@@ -280,7 +282,9 @@ a {
 .cart-card__empty a:hover img {
   transform: translateX(10%);
 }
-
+  .checkout-btn {
+  color: white;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -295,7 +299,9 @@ a {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+
 }
+
 
 footer {
   font-size: var(--small-font);
