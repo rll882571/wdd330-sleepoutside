@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 
 function packageItems(items) {
   return items.map((item) => ({
@@ -66,9 +66,21 @@ export default class CheckoutProcess {
     formData.shipping = this.shipping;
     formData.items = packageItems(this.list);
 
-    const services = (await import("./ExternalServices.mjs")).default;
-    const externalServices = new services();
-    const response = await externalServices.checkout(formData);
-    return response;
+    try {
+      const services = (await import("./ExternalServices.mjs")).default;
+      const externalServices = new services();
+      const response = await externalServices.checkout(formData);
+      // Success: clear cart and redirect
+      setLocalStorage("so-cart", []);
+      window.location.href = "../checkout/success.html";
+      return response;
+    } catch (err) {
+      console.error("Checkout error:", err);
+      if (err.message && err.message.message) {
+        alertMessage(err.message.message);
+      } else {
+        alertMessage("There was a problem with your order. Please try again.");
+      }
+    }
   }
 }

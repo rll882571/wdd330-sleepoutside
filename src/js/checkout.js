@@ -12,12 +12,10 @@ document.querySelector("#zip").addEventListener("blur", () => {
 
 document.querySelector("#checkout-form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  try {
-    const response = await checkout.checkout(e.target);
-    console.log("Order response:", response);
-    alert("Order placed successfully!");
-  } catch (err) {
-    console.error("Checkout error:", err);
-    alert("There was an error placing your order.");
+  const myForm = document.forms[0];
+  const chk_status = myForm.checkValidity();
+  myForm.reportValidity();
+  if (chk_status) {
+    checkout.checkout(e.target);
   }
 });
